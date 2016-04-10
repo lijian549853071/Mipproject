@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.dao.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="lj.model.Resource" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uuidname" property="uuidname" jdbcType="VARCHAR" />
+    <result column="edgefile" property="edgefile" jdbcType="VARCHAR" />
+    <result column="nodefile" property="nodefile" jdbcType="VARCHAR" />
+    <result column="savepath" property="savepath" jdbcType="VARCHAR" />
+    <result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uuidname, edgefile, nodefile, savepath, uploadtime, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from resource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="lj.model.Resource" >
+    insert into resource (id, uuidname, edgefile, 
+      nodefile, savepath, uploadtime, 
+      description)
+    values (#{id,jdbcType=INTEGER}, #{uuidname,jdbcType=VARCHAR}, #{edgefile,jdbcType=VARCHAR}, 
+      #{nodefile,jdbcType=VARCHAR}, #{savepath,jdbcType=VARCHAR}, #{uploadtime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="lj.model.Resource" >
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uuidname != null" >
+        uuidname,
+      </if>
+      <if test="edgefile != null" >
+        edgefile,
+      </if>
+      <if test="nodefile != null" >
+        nodefile,
+      </if>
+      <if test="savepath != null" >
+        savepath,
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uuidname != null" >
+        #{uuidname,jdbcType=VARCHAR},
+      </if>
+      <if test="edgefile != null" >
+        #{edgefile,jdbcType=VARCHAR},
+      </if>
+      <if test="nodefile != null" >
+        #{nodefile,jdbcType=VARCHAR},
+      </if>
+      <if test="savepath != null" >
+        #{savepath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="lj.model.Resource" >
+    update resource
+    <set >
+      <if test="uuidname != null" >
+        uuidname = #{uuidname,jdbcType=VARCHAR},
+      </if>
+      <if test="edgefile != null" >
+        edgefile = #{edgefile,jdbcType=VARCHAR},
+      </if>
+      <if test="nodefile != null" >
+        nodefile = #{nodefile,jdbcType=VARCHAR},
+      </if>
+      <if test="savepath != null" >
+        savepath = #{savepath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="lj.model.Resource" >
+    update resource
+    set uuidname = #{uuidname,jdbcType=VARCHAR},
+      edgefile = #{edgefile,jdbcType=VARCHAR},
+      nodefile = #{nodefile,jdbcType=VARCHAR},
+      savepath = #{savepath,jdbcType=VARCHAR},
+      uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
